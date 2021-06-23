@@ -1,0 +1,107 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+.header {
+  grid-column: span 12;
+}
+.navigation-menu {
+  grid-column: span 6;
+}
+.main-content {
+  grid-column: span 6;
+}
+.footer {
+  grid-column: span 12;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+}
+
+.app {
+  grid-column-start: span 12;
+}
+
+.scroller {
+  margin-right: auto;
+  padding-right: 40px;
+}
+
+div.todo-description {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li.list-style-not-complete {
+  margin: 10px;
+  background-color: #99a8bb;
+  border: 1px solid #ddd;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+li.list-style-complete {
+  margin: 10px;
+  background-color: #99a8bb;
+  border: 1px solid #ddd;
+  margin-left: auto;
+  margin-right: auto;
+  height: 75px;
+  width: 50%;
+}
+
+button.navigation-menu {
+  width: 350px;
+  height: 50px;
+  margin-left: auto;
+}
+
+button.main-content {
+  width: 350px;
+  height: 50px;
+}
+
+button.delete-button {
+  background-color: red;
+  color: white;
+  width: 250px;
+}
+
+button.edit-button {
+  background-color: blue;
+  color: white;
+  width: 250px;
+  height: 50px;
+}
+
+.input-not-editing {
+  background: none;
+  color: #000000;
+  border: none;
+  width: 100%;
+  margin-left: auto;
+  width: 700px;
+  font-size: 40px;
+  text-align: center;
+}
+
+button.save-button {
+  margin-top: 5px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: blue;
+  width: 350px;
+  height: 50px;
+}
+
+.input-editing {
+  width: 700px;
+  text-align: center;
+  color: black;
+}

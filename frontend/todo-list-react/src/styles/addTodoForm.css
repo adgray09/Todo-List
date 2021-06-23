@@ -1,0 +1,26 @@
+.textareastyles {
+  resize: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  border-color: black;
+  border-width: 3px;
+  height: 70px;
+  font-size: 49px;
+}
+
+.addButton {
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  height: 50px;
+  color: white;
+  background: black;
+  border-width: 3px;
+  display: block;
+}
+
+textarea {
+  display: block;
+}
