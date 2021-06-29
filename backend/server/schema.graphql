@@ -1,19 +1,26 @@
 type Todo {
-    id: ID!
-    description: String!
-    date: String!
-    complete: Boolean!
-    }
+  id: ID!
+  description: String!
+  date: Int!
+  complete: Boolean!
+  priority: String!
+}
+
+enum Priority {
+  high
+  medium
+  low
+}
 
 type Query {
-    allTodos: [Todo!]!
-    completedTodos: [Todo!]!
+  allTodos: [Todo!]!
+  completedTodos: [Todo!]!
 }
 
 type Mutation {
-    newTodo(description: String!): Todo!
-    completeTodo(id: ID!): Todo
-    editTodo(id: ID!, description: String!): Todo
-    deleteTodo(id: ID!): Todo!
-    clearCompleted: [Todo] 
+  newTodo(description: String!, priority: Priority!): Todo!
+  completeTodo(id: ID!): Todo
+  editTodo(id: ID!, description: String!): Todo
+  deleteTodo(id: ID!): Todo!
+  clearCompleted: [Todo]
 }

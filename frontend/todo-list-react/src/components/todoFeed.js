@@ -5,14 +5,14 @@ import { useState, useEffect } from "react";
 import listAllTodosQuery from "../graphql/queries/listAllTodos";
 import listCompleteTodosQuery from "../graphql/queries/listCompleteTodos";
 import clearCompletedTodos from "../graphql/mutations/clearCompletedTodos";
-import TodoFeedListItem from './todoFeedListItem';
+import TodoFeedSectioning from "./todoFeedSectioning";
 
 
 function TodoFeed({ shouldRefresh }) {
   // State variables
   const [completeButtonFilter, setCompleteButtonFilter] = useState(false);
   // Queries
-  const { loading, error, data, refetch } = useQuery(listAllTodosQuery, { 
+  const { loading, error, data, refetch } = useQuery(listAllTodosQuery, {
   });
   const {
     data: completedTodoData,
@@ -39,8 +39,10 @@ function TodoFeed({ shouldRefresh }) {
   if (error) return <h1>`Error! ${error.message}`</h1>;
 
   let dataSource = completeButtonFilter === false
-      ? data.allTodos
-      : completedTodoData.completedTodos;
+    ? data.allTodos
+    : completedTodoData.completedTodos;
+
+  const sortedData = dataSource.slice().sort((a, b) => a.date - b.date)
 
   return (
     <div className="container">
@@ -66,12 +68,10 @@ function TodoFeed({ shouldRefresh }) {
             {completeButtonFilter === true ? (
               <button onClick={() => onClickClear()}>Clear</button>
             ) : null}
-            {dataSource.map((item) => (
-              <TodoFeedListItem
-                item={item}
-                completeButtonFilter={completeButtonFilter}
-              />
-            ))}
+            {<TodoFeedSectioning 
+              data={sortedData} 
+              completeButtonFilter={completeButtonFilter}
+            />}
           </ul>
         </div>
       </div>

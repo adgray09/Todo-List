@@ -8,8 +8,9 @@ WORKDIR /usr/src/app/backend
 
 COPY package*.json ./
 RUN npm install 
+RUN npx prisma generate
 
-COPY . . /usr/src/app/backend/
+# COPY . /usr/src/app/backend/
 EXPOSE 4000
 
 CMD ["npm", "start"]

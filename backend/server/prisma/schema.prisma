@@ -10,6 +10,7 @@ generator client {
 model Todo {
     id          String  @id @default(cuid())
     description String
-    date        String
+    date        Int
     complete    Boolean @default(false)
+    priority    String
 }

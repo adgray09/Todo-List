@@ -1,6 +1,7 @@
 const { ApolloServer } = require('apollo-server');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -11,6 +12,8 @@ const resolvers = {
     Query,
     Mutation,
 }
+
+// apollo server
 
 const server = new ApolloServer({
     typeDefs: fs.readFileSync(
@@ -23,7 +26,7 @@ const server = new ApolloServer({
     }
 })
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+server.listen(process.env.PORT || 4000).then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);
 });
 

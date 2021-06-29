@@ -15,21 +15,32 @@ function AddTodo({ onSuccess, onError }) {
   }, [data])
 
   function onFormSubmit(e) {
-    e.preventDefault();
-    addTodo({ variables: { description } });
-    setDescription('')
+    var desc = document.forms["myForm"]["ftodo"].value; 
+    const element = document.getElementById("prio-items")
+    const priority = element.options[element.selectedIndex].text 
+    console.log(priority)
+
+    if (desc === "") {
+      alert("Please enter todo");
+      return false;
+    } else {
+      e.preventDefault();
+      addTodo({ variables: { description, priority } });
+      setDescription('')
+    }
   }
 
   return (
     <h1>
       <div>
         <h1 style={{ display: 'flex', justifyContent: 'center' }}>Todo List</h1>
-        <div className="form-group">
-          <form class="form-inline formDiv"
+          <form name="myForm"
             onSubmit={onFormSubmit}
-          >
+          ><div className="form-container">
             <textarea
-              className='form-control textareastyles'
+              name="ftodo"
+              placeholder="Add Todo's"
+              className='textareastyles navigation-menu-form'
               id="exampleFormControlText"
               rows="5"
               value={description}
@@ -37,12 +48,18 @@ function AddTodo({ onSuccess, onError }) {
                 setDescription(e.target.value)
               }}
               type="text"
-            />
+              />
+              <select className="main-content-form" name="prio-items" id="prio-items">
+                <option value="high">high</option>
+                <option value="medium">medium</option>
+                <option value="low">low</option>
+              </select>
+            </div>
+            
             <button className="addButton" type="submit">Add</button>
           </form>
         </div>
-      </div>
-    </h1 >
+    </h1>
   );
 }
 

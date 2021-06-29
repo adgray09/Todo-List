@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './App'
 import reportWebVitals from './reportWebVitals';
+import { uriName } from './environmentManager';
+
 
 import {
   ApolloProvider,
@@ -13,8 +15,10 @@ import {
 } from '@apollo/client'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: 'https://ag-todolist-api.herokuapp.com/'
 })
+
+// console.log(httpLink)
 
 const client = new ApolloClient({
   link: httpLink,

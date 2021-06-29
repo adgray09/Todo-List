@@ -1,12 +1,13 @@
-const moment = require("moment");
-
 async function newTodo(parent, args, context, info) {
+
+    options = {high: "high", medium: "medium", low: "low"}
 
     const newTodo = context.prisma.todo.create({
         data: {
             description: args.description,
-            date: moment().format('MMMM Do YYYY, h:mm a'),
+            date: new Date().getTime(),
             complete: false,
+            priority: options[args.priority]
         },
     })
     return newTodo

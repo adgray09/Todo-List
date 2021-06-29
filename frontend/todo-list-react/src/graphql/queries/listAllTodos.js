@@ -6,6 +6,8 @@ const listAllTodosQuery = gql`
       description
       complete
       id 
+      date
+      priority
     }
   }
 `

@@ -1,33 +1,44 @@
-version: '3'
+version: "3"
 
-services: 
-    frontend: 
-        build: ./frontend/todo-list-react
-        ports: 
-            - "3000:3000"
-        container_name: todo-frontend-docker
-        restart: always 
-        links: 
-            - backend
-    
-    backend: 
-        build: ./backend/server
-        ports: 
-            - "4000:4000"
-        container_name: todo-backend-docker 
-        restart: always 
-        links: 
-            - postgres
-    
-    postgres: 
-        image: postgres:13.3
-        restart: always
-        environment:
-            - POSTGRES_USER=alexgray
-            - POSTGRES_PASSWORD=testing12345
-        volumes:
-            - postgres:/var/lib/postgresql/data
-        ports:
-            - "5432:5432"
+services:
+  frontend:
+    build: ./frontend/todo-list-react
+
+    volumes:
+      - ./frontend/todo-list-react:/usr/src/app/frontend
+      # - node_modules:/usr/app/node_modules
+    ports:
+      - "3000:3000"
+    container_name: todo-frontend-docker
+    restart: always
+    depends_on:
+      - backend
+      - postgres
+    links:
+      - backend
+
+  backend:
+    build: ./backend/server
+    volumes:
+      - ./backend/server:/usr/src/app/backend
+    ports:
+      - "4000:4000"
+    container_name: todo-backend-docker
+    restart: always
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:13.3
+    restart: always
+    environment:
+      - POSTGRES_USER=alexgray
+      - POSTGRES_PASSWORD=testing12345
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 volumes:
-    postgres: 
+  postgres:

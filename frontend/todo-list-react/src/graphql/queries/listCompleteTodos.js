@@ -6,6 +6,8 @@ const listCompleteTodosQuery = gql`
       description
       complete
       id 
+      date
+      priority
     }
   }
 `
