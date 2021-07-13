@@ -6,24 +6,26 @@ import listAllTodosQuery from "../graphql/queries/listAllTodos";
 import listCompleteTodosQuery from "../graphql/queries/listCompleteTodos";
 import clearCompletedTodos from "../graphql/mutations/clearCompletedTodos";
 import TodoFeedSectioning from "./todoFeedSectioning";
-
+import { Col, Row, ListGroup, Container, Button } from "react-bootstrap";
 
 function TodoFeed({ shouldRefresh }) {
-  // State variables
+  /**
+   * @param {*} shouldRefresh state variable passed in to refetch allTodos query
+   * @returns JSX containing allTodos/completed todo's buttons as well as priority Sectioning component
+   */
+
   const [completeButtonFilter, setCompleteButtonFilter] = useState(false);
-  // Queries
-  const { loading, error, data, refetch } = useQuery(listAllTodosQuery, {
-  });
+  const { loading, error, data, refetch } = useQuery(listAllTodosQuery, {});
   const {
     data: completedTodoData,
     error: error2,
     loading: loading2,
-    refetch: refetch2
+    refetch: refetch2,
   } = useQuery(listCompleteTodosQuery);
 
-  // Mutations
   const [clearTodos] = useMutation(clearCompletedTodos);
 
+  //* refreshes page by calling refetch
   useEffect(() => {
     if (shouldRefresh === true) {
       refetch();
@@ -31,48 +33,62 @@ function TodoFeed({ shouldRefresh }) {
   }, [shouldRefresh]);
 
   async function onClickClear() {
-    clearTodos()
-    refetch2()
+    clearTodos();
+    refetch2();
   }
 
+  //* insures page won't be empty and error won't be thrown
   if (loading) return "";
   if (error) return <h1>`Error! ${error.message}`</h1>;
 
-  let dataSource = completeButtonFilter === false
-    ? data.allTodos
-    : completedTodoData.completedTodos;
+  //* filtered data based on state variable
+  let dataSource =
+    completeButtonFilter === false
+      ? data.allTodos
+      : completedTodoData.completedTodos;
 
-  const sortedData = dataSource.slice().sort((a, b) => a.date - b.date)
+  //* sorting data by date so when edit mutation is applied it won't change the order of data
+  const sortedData = dataSource.slice().sort((a, b) => a.date - b.date);
 
   return (
-    <div className="container">
-      <button
-        className="navigation-menu"
-        onClick={() => {
-          setCompleteButtonFilter(false);
-        }}
-      >
-        All Todos
-      </button>
-      <button
-        className="main-content"
-        onClick={() => {
-          setCompleteButtonFilter(true);
-        }}
-      >
-        Completed Todos
-      </button>
+    <div>
+      <Container>
+        <Row>
+          <Col>
+            <Button
+              className="float-right"
+              onClick={() => {
+                setCompleteButtonFilter(false);
+              }}
+            >
+              All Todos
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              className="float-left"
+              onClick={() => {
+                setCompleteButtonFilter(true);
+              }}
+            >
+              Completed Todos
+            </Button>
+          </Col>
+        </Row>
+      </Container>
       <div className="app">
         <div className="scroller">
-          <ul className="no-bullets">
+          <ListGroup>
             {completeButtonFilter === true ? (
               <button onClick={() => onClickClear()}>Clear</button>
             ) : null}
-            {<TodoFeedSectioning 
-              data={sortedData} 
-              completeButtonFilter={completeButtonFilter}
-            />}
-          </ul>
+            {
+              <TodoFeedSectioning
+                data={sortedData}
+                completeButtonFilter={completeButtonFilter}
+              />
+            }
+          </ListGroup>
         </div>
       </div>
     </div>

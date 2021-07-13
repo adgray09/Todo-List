@@ -1,24 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './App'
-import reportWebVitals from './reportWebVitals';
-import { uriName } from './environmentManager';
-
+import "bootstrap/dist/css/bootstrap.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 import {
   ApolloProvider,
   ApolloClient,
   createHttpLink,
   InMemoryCache,
-  ApolloLink
-} from '@apollo/client'
+  ApolloLink,
+} from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: 'https://ag-todolist-api.herokuapp.com/'
-})
-
-// console.log(httpLink)
+  uri: "http://localhost:4000",
+});
 
 const client = new ApolloClient({
   link: httpLink,
@@ -29,7 +26,7 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

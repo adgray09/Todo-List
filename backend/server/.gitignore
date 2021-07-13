@@ -1,5 +1,5 @@
 # remove all that node module crud that takes a ton of space. Bleh :D
 /node_modules
-oldDockerFile
 /prisma/.env/
 /prisma/node_modules
+/prisma/dev.db
