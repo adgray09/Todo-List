@@ -3,7 +3,7 @@ import completeTodoMutation from "../graphql/mutations/completeTodoItem";
 import editTodoMutation from "../graphql/mutations/editTodo";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { ListGroup, Container, Col, Row, Button } from "react-bootstrap";
+import { ListGroup, Container, Col, Row } from "react-bootstrap";
 import Glyphicon from "@strongdm/glyphicon";
 
 function TodoFeedListItem({ item, completeButtonFilter }) {
@@ -77,7 +77,7 @@ function TodoFeedListItem({ item, completeButtonFilter }) {
                 </Col>
               ) : (
                 <Fragment>
-                  <Col md="auto">
+                  <Col xs lg="1">
                     <button
                       className="edit-image btn btn-default"
                       onClick={() => {
@@ -87,7 +87,7 @@ function TodoFeedListItem({ item, completeButtonFilter }) {
                       <Glyphicon glyph="pencil" />
                     </button>
                   </Col>
-                  <Col xs lg="2">
+                  <Col xs lg="1">
                     <button
                       disabled={isEditing}
                       className="edit-image"

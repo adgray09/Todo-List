@@ -56,6 +56,7 @@ function TodoFeed({ shouldRefresh }) {
         <Row>
           <Col>
             <Button
+              variant="secondary"
               className="float-right"
               onClick={() => {
                 setCompleteButtonFilter(false);
@@ -66,6 +67,7 @@ function TodoFeed({ shouldRefresh }) {
           </Col>
           <Col>
             <Button
+              variant="secondary"
               className="float-left"
               onClick={() => {
                 setCompleteButtonFilter(true);

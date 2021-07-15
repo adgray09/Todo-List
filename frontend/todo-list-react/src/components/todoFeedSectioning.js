@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import TodoFeedListItem from "./todoFeedListItem";
 import "../styles/allTodos.css";
-import { Col } from "react-bootstrap";
+import { Col, Container, ListGroup } from "react-bootstrap";
 
 /**
  * * This component is used for High/Medium/Low data sectioning
@@ -17,51 +17,40 @@ function TodoFeedSectioning({ data, completeButtonFilter }) {
 
   return (
     <Fragment>
-      <h1
-        style={{
-          color: "red",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingTop: "25px",
-        }}
-        className="priority-headers"
-      >
-        High
-      </h1>
+      <Container className="input-editing">
+        <ListGroup.Item
+          style={{ marginTop: "25px", backgroundColor: "black", color: "red" }}
+        >
+          <Col>High</Col>
+        </ListGroup.Item>
+      </Container>
       {highPrioData.map((item) => (
         <TodoFeedListItem
           item={item}
           completeButtonFilter={completeButtonFilter}
         />
       ))}
-      <h1
-        style={{
-          color: "green",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingTop: "25px",
-        }}
-        className="priority-headers"
-      >
-        Medium
-      </h1>
+      <Container className="input-editing">
+        <ListGroup.Item
+          style={{ marginTop: "25px", backgroundColor: "black", color: "red" }}
+        >
+          <Col>Medium</Col>
+        </ListGroup.Item>
+      </Container>
       {mediumPrioData.map((item) => (
         <TodoFeedListItem
           item={item}
           completeButtonFilter={completeButtonFilter}
         />
       ))}
-      <h1
-        style={{
-          color: "yellow",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingTop: "25px",
-        }}
-        className="priority-headers"
-      >
-        Low
-      </h1>
+      <Container className="input-editing">
+        <ListGroup.Item
+          variant="secondary"
+          style={{ marginTop: "25px", color: "red" }}
+        >
+          <Col>Low</Col>
+        </ListGroup.Item>
+      </Container>
       {lowPrioData.map((item) => (
         <TodoFeedListItem
           item={item}

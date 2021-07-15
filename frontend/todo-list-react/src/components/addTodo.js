@@ -1,5 +1,5 @@
-import React from "react";
 import "../styles/addTodoForm.css";
+import React from "react";
 import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
 import newTodoMutation from "../graphql/mutations/createNewTodo";
@@ -12,6 +12,7 @@ import {
   FormGroup,
   Button,
 } from "react-bootstrap";
+import Glyphicon from "@strongdm/glyphicon";
 
 function AddTodo({ onSuccess, onError }) {
   /**
@@ -67,7 +68,7 @@ function AddTodo({ onSuccess, onError }) {
             />
             <DropdownButton
               as={InputGroup.Append}
-              variant="outline-primary"
+              variant="primary"
               title="Priority"
               id="input-group-dropdown-2"
               onSelect={handleSelect}
@@ -83,9 +84,9 @@ function AddTodo({ onSuccess, onError }) {
                 low
               </Dropdown.Item>
             </DropdownButton>
-            <Button onClick={onFormSubmit} variant="primary" type="submit">
-              Submit
-            </Button>
+            <button onClick={onFormSubmit} variant="primary" type="submit">
+              <Glyphicon glyph="plus" />
+            </button>
           </InputGroup>
         </FormGroup>
       </Form>
